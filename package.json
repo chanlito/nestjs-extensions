@@ -1,21 +1,29 @@
 {
   "name": "nestjs-extensions",
   "version": "0.1.0",
-  "description": "",
+  "description": "A collection of useful modules to use with Nest framework. 😻",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
-    "nestjs"
+    "nest",
+    "nestjs",
+    "typescript",
+    "decorators",
+    "typeorm",
+    "extensions"
   ],
   "author": "Bruce Hem <bruce.hem@pathmazing.com>",
   "license": "MIT",
   "dependencies": {
     "@nestjs/common": "^4.5.6",
-    "@types/node": "^8.5.6",
     "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.6",
     "typeorm": "^0.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.6",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "typesync": "^0.2.5"
   }
 }
