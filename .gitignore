@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+
+# environment variables
+.env
+
+# IDE
+.idea
+.awcache
+
+# misc
+.DS_Store
+npm-debug.log
+
+# tests
+coverage
+.nyc_output
+
+# dist
+dist
