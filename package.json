@@ -4,6 +4,10 @@
   "description": "A collection of useful modules to use with Nest framework. 😻",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "scripts": {
+    "compile": "rimraf dist && tsc",
+    "prepare": "npm run compile"
+  },
   "keywords": [
     "nest",
     "nestjs",
@@ -24,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^8.5.6",
     "@types/redis": "^2.8.4",
+    "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2",
     "typesync": "^0.2.5"
