@@ -1,6 +1,6 @@
 {
   "name": "nestjs-extensions",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A collection of useful modules to use with Nest framework. 😻",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
