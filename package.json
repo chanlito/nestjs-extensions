@@ -21,6 +21,7 @@
   "dependencies": {
     "@nestjs/common": "^4.5.6",
     "@nestjs/core": "^4.5.7",
+    "@nestjs/websockets": "^4.5.7",
     "indicative": "^3.0.6",
     "mandrill-api": "^1.0.45",
     "nodemailer": "^4.4.1",

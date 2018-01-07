@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 export * from './auth';
+export * from './exception';
 export * from './indicative';
 export * from './logger';
 export * from './mailer';
