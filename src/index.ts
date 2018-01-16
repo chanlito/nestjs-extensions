@@ -6,4 +6,5 @@ export * from './indicative';
 export * from './logger';
 export * from './mailer';
 export * from './redis';
+export * from './sequelize';
 export * from './typeorm';
