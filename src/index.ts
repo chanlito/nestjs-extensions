@@ -8,3 +8,4 @@ export * from './mailer';
 export * from './redis';
 export * from './sequelize';
 export * from './typeorm';
+export * from './util';
