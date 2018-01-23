@@ -44,4 +44,4 @@ export type SequelizeProps =
   | 'validate'
   | 'version';
 
-export type Props<T> = Partial<Omit<Model<T>, SequelizeProps>>;
+export type Props<T extends Model<T>> = Partial<Omit<T, SequelizeProps>>;
