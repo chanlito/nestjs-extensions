@@ -1,4 +1,6 @@
-import { ISequelizeConfig } from 'sequelize-typescript';
+import { ISequelizeConfig, Model } from 'sequelize-typescript';
+
+import { Omit } from '..';
 
 export interface SequelizeModuleConfiguration {
   config: ISequelizeConfig;
@@ -41,3 +43,5 @@ export type SequelizeProps =
   | 'where'
   | 'validate'
   | 'version';
+
+export type Props<T> = Partial<Omit<Model<T>, SequelizeProps>>;
