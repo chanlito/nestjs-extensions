@@ -4,6 +4,8 @@ import { Transform } from 'class-transformer';
 import { TRANSFORM_META_KEY } from './transform.constants';
 import { TransformNumberOptions } from './transform.interfaces';
 
+export { Transform };
+
 /**
  * Allow to apply additional tranformation decorators on specified class
  */
