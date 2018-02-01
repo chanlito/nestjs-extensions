@@ -22,6 +22,7 @@
     "@nestjs/common": "^4.5.9",
     "@nestjs/core": "^4.5.10",
     "@nestjs/websockets": "^4.5.8",
+    "class-transformer": "^0.1.8",
     "continuation-local-storage": "^3.2.1",
     "indicative": "^3.0.6",
     "mandrill-api": "^1.0.45",
