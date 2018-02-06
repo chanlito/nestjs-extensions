@@ -28,6 +28,7 @@ export class DtoPipe implements PipeTransform<any> {
   }
 
   private mapError(err: ValidationError) {
+    console.log('map error', err);
     if (err.constraints) {
       return {
         field: err.property,
