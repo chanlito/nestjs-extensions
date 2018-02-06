@@ -28,7 +28,7 @@ export class DtoPipe implements PipeTransform<any> {
   }
 
   private mapError(err: ValidationError, name: string) {
-    const field = `${name}${name ? '.' : ''}${err.property}`;
+    const field = `${name !== '' && name !== err.property ? `${name}.` : ''}${err.property}`;
     if (err.constraints) {
       return {
         field,
