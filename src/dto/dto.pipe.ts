@@ -33,7 +33,7 @@ export class DtoPipe implements PipeTransform<any> {
       return {
         field,
         validation: Object.keys(err.constraints)[0],
-        message: err.constraints[Object.keys(err.constraints)[0]]
+        message: err.constraints[Object.keys(err.constraints)[0]].replace(err.property, field)
       };
     } else return this.mapError(err.children[0], field);
   }
