@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(req, context: ExecutionContext) {
     req.__AUTH_CHECK__ = this.authorizationChecker;
-    const roles = this.reflector.get<any[]>(AUTH_META_KEY, context.handler) || [];
+    const roles = this.reflector.get<any>(AUTH_META_KEY, context.handler) || [];
     const [x] = await this.authorizationChecker(req, roles);
     return x;
   }
