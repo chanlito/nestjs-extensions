@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
       const [x] = await this.authorizationChecker(req, roles);
       return x;
     }
+    return true;
   }
 }
 
