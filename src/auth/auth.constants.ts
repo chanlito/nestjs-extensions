@@ -1,1 +1,6 @@
-export const AUTH_META_KEY = 'NESTJS_EXT_VALIDATE_META_KEY';
+export const AUTH_META_KEY = 'NESTJS_EXTENSIONS_AUTH_META_KEY';
+
+export enum AuthTypes {
+  App = 'App',
+  User = 'User'
+}

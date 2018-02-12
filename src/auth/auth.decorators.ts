@@ -1,9 +1,11 @@
 import { createRouteParamDecorator, ReflectMetadata } from '@nestjs/common';
 
-import { AUTH_META_KEY } from './auth.constants';
+import { AUTH_META_KEY, AuthTypes } from './auth.constants';
+import { AuthOptions } from './auth.interfaces';
 
-export function Auth(...roles: string[]): MethodDecorator {
-  return ReflectMetadata(AUTH_META_KEY, { checkAuth: true, roles });
+export function Auth(options?: AuthOptions): MethodDecorator {
+  const defaults: AuthOptions = { type: AuthTypes.App, roles: [], ...options };
+  return ReflectMetadata(AUTH_META_KEY, defaults);
 }
 
 export const AuthUser: any = createRouteParamDecorator(async (args: { required: boolean }, req) => {
