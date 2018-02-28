@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
   async canActivate(req, context: ExecutionContext) {
     req.__AUTH_CHECK__ = this.authResolver;
     const authOptions = this.reflector.get<AuthOptions>(AUTH_META_KEY, context.handler);
-    console.log('authOptions', authOptions);
     if (authOptions) {
       const [x] = await this.authResolver(req, authOptions);
       return x;
