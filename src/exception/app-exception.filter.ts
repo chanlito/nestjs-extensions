@@ -1,7 +1,4 @@
 import { Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
-import * as PrettyError from 'pretty-error';
-
-const pe = new PrettyError();
 
 @Catch()
 export class ApplicationExceptionFilter implements ExceptionFilter {
@@ -33,6 +30,6 @@ export class ApplicationExceptionFilter implements ExceptionFilter {
     }
 
     res.status(statusCode).json(responseBody);
-    console.log(pe.render(responseBody));
+    console.error(responseBody);
   }
 }
