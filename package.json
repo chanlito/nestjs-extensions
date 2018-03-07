@@ -21,6 +21,7 @@
   "dependencies": {
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
+    "pretty-error": "^2.1.1",
     "reflect-metadata": "^0.1.10"
   },
   "devDependencies": {
