@@ -25,11 +25,6 @@ export class ApplicationExceptionFilter implements ExceptionFilter {
       };
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-      responseBody = { ...responseBody, stack: err.stack };
-    }
-
     res.status(statusCode).json(responseBody);
-    console.error(responseBody);
   }
 }
