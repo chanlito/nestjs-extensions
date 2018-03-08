@@ -10,8 +10,7 @@ import { DtoOptions } from './dto.interfaces';
 export class DtoPipe implements PipeTransform<any> {
   constructor(private readonly reflector: Reflector) {}
 
-  async transform(value: any, metadata: ArgumentMetadata) {
-    const { metatype } = metadata;
+  async transform(value: any, { metatype }: ArgumentMetadata) {
     const dtoOptions = this.reflector.get<DtoOptions>(DTO_META_KEY, metatype);
     if (value && dtoOptions) {
       const entity = plainToClass(metatype as any, value);
@@ -19,7 +18,7 @@ export class DtoPipe implements PipeTransform<any> {
       if (errors.length > 0) {
         throw new UnprocessableEntityException({
           message: 'Validation Failed.',
-          errors: errors.map(x => this.mapError(x, ''))
+          errors: errors.map(e => this.mapErrors(e, ''))
         });
       }
       return entity;
@@ -27,14 +26,14 @@ export class DtoPipe implements PipeTransform<any> {
     return value;
   }
 
-  private mapError(err: ValidationError, name: string) {
-    const field = `${name !== '' && name !== err.property ? `${name}.` : ''}${err.property}`;
-    if (err.constraints) {
-      return {
-        field,
-        validation: Object.keys(err.constraints)[0],
-        message: err.constraints[Object.keys(err.constraints)[0]].replace(err.property, field)
-      };
-    } else return this.mapError(err.children[0], field);
+  private mapErrors(e: ValidationError, name: string) {
+    const field = `${name !== '' && name !== e.property ? `${name}.` : ''}${e.property}`;
+    return e.constraints
+      ? {
+          field,
+          validation: Object.keys(e.constraints)[0],
+          message: e.constraints[Object.keys(e.constraints)[0]].replace(e.property, field)
+        }
+      : this.mapErrors(e.children[0], field);
   }
 }
