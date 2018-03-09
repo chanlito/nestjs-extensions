@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { SequelizeModuleConfiguration } from './sequelize.interfaces';
 import { getModelToken } from './sequelize.utils';
 
-export function createSequelizeProviders({ config, models, useCLS }: SequelizeModuleConfiguration): any[] {
+export function createSequelizeProviders({ config, models }: SequelizeModuleConfiguration): any[] {
   const sequelizeProvider = {
     provide: Sequelize,
     useFactory: async () => {

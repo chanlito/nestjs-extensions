@@ -5,7 +5,6 @@ import { Omit } from '..';
 export interface SequelizeModuleConfiguration {
   config: ISequelizeConfig;
   models: any[];
-  useCLS?: boolean;
 }
 
 export type SequelizeProps =
