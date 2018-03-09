@@ -1,6 +1,5 @@
 import { Logger } from './logger';
 import { LoggerToken } from './logger.constants';
-import { CreateLoggerProvidersConfiguration } from './logger.interface';
 
 export function createLoggerProviders(config: CreateLoggerProvidersConfiguration) {
   return [
@@ -9,4 +8,9 @@ export function createLoggerProviders(config: CreateLoggerProvidersConfiguration
       useValue: new Logger(config)
     }
   ];
+}
+
+export interface CreateLoggerProvidersConfiguration {
+  types: Array<'console' | 'files'>;
+  directory: string;
 }

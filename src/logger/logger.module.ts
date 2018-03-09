@@ -1,7 +1,6 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 
-import { CreateLoggerProvidersConfiguration } from './logger.interface';
-import { createLoggerProviders } from './logger.providers';
+import { createLoggerProviders, CreateLoggerProvidersConfiguration } from './logger.providers';
 
 @Global()
 @Module({})

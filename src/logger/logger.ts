@@ -3,7 +3,7 @@ import 'winston-daily-rotate-file';
 import { LoggerService } from '@nestjs/common';
 import * as winston from 'winston';
 
-import { CreateLoggerProvidersConfiguration } from './logger.interface';
+import { CreateLoggerProvidersConfiguration } from './logger.providers';
 
 export class Logger implements LoggerService {
   private readonly logger: winston.LoggerInstance;
