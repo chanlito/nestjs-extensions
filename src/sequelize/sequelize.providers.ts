@@ -1,4 +1,3 @@
-import * as cls from 'continuation-local-storage';
 import { Sequelize } from 'sequelize-typescript';
 
 import { SequelizeModuleConfiguration } from './sequelize.interfaces';
@@ -8,8 +7,6 @@ export function createSequelizeProviders({ config, models, useCLS }: SequelizeMo
   const sequelizeProvider = {
     provide: Sequelize,
     useFactory: async () => {
-      const namespace = cls.createNamespace(process.env.CLS_NAMESPACE || 'sequelize-typescript-namespace');
-      (Sequelize as any).__proto__.useCLS(namespace);
       const sequelize = new Sequelize(config);
       sequelize.addModels(models);
       return sequelize;
