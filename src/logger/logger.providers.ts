@@ -1,16 +1,11 @@
 import { Logger } from './logger';
 import { LoggerToken } from './logger.constants';
 
-export function createLoggerProviders(config: CreateLoggerProvidersConfiguration) {
+export function createLoggerProviders() {
   return [
     {
       provide: LoggerToken,
-      useValue: new Logger(config)
+      useValue: new Logger()
     }
   ];
-}
-
-export interface CreateLoggerProvidersConfiguration {
-  types: Array<'console' | 'files'>;
-  directory: string;
 }

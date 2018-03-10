@@ -1,78 +1,46 @@
-import { LoggerService } from '@nestjs/common';
 import * as optional from 'optional';
 
-import { CreateLoggerProvidersConfiguration } from './logger.providers';
+const pino = optional('pino');
 
-optional('winston-daily-rotate-file');
-const winston = optional('winston');
-
-export class Logger implements LoggerService {
+export class Logger {
   private readonly logger: any;
 
-  constructor(private config: CreateLoggerProvidersConfiguration) {
-    this.logger = new winston.Logger({
-      level: 'debug'
+  constructor() {
+    this.logger = pino({
+      prettyPrint: process.env.NODE_ENV !== 'production'
     });
+  }
 
-    const useConsole = config.types.some(x => x === 'console');
-    const useFiles = config.types.some(x => x === 'files');
-
-    if (useConsole) {
-      this.logger.add(winston.transports.Console, {
-        colorize: true,
-        prettyPrint: true,
-        timestamp: true
-      });
-    }
-
-    if (useFiles) {
-      const dailyRotateCommonOpts = {
-        datePattern: 'yyyy-MM-dd.',
-        prepend: true
-      };
-      this.logger.add(winston.transports.DailyRotateFile, {
-        filename: this.config.directory + '/debug.log',
-        level: 'debug',
-        name: 'debug',
-        tailable: true,
-        ...dailyRotateCommonOpts
-      });
-      this.logger.add(winston.transports.DailyRotateFile, {
-        filename: this.config.directory + '/error.log',
-        level: 'error',
-        name: 'error',
-        tailable: true,
-        ...dailyRotateCommonOpts
-      });
-      this.logger.add(winston.transports.DailyRotateFile, {
-        filename: this.config.directory + '/info.log',
-        level: 'info',
-        name: 'info',
-        tailable: true,
-        ...dailyRotateCommonOpts
-      });
-      this.logger.add(winston.transports.DailyRotateFile, {
-        filename: this.config.directory + '/warn.log',
-        level: 'warn',
-        name: 'warn',
-        ...dailyRotateCommonOpts
-      });
+  log(msg: string): void;
+  log(obj: object, msg?: string): void;
+  log(msgOrObj: any, msg: string = ''): void {
+    if (arguments.length > 2) {
+      const { '0': message, '1': context } = arguments;
+      this.logger.info(`[${context}] ${message}`);
+    } else {
+      this.logger.info(msgOrObj, msg);
     }
   }
 
-  debug(message: string, ...meta: any[]) {
-    this.logger.debug(message, ...meta);
+  error(msg: string): void;
+  error(obj: object, msg?: string): void;
+  error(msgOrObj: any, msg: string = ''): void {
+    if (arguments.length > 2) {
+      const { '0': message, '1': context } = arguments;
+      this.logger.error(`[${context}] ${message}`);
+    } else {
+      this.logger.error(msgOrObj, msg);
+    }
   }
 
-  error(message: string, ...meta: any[]) {
-    this.logger.error(message, ...meta);
-  }
-
-  log(message: string) {
-    this.logger.info(message);
-  }
-
-  warn(message: string, ...meta: any[]) {
-    this.logger.warn(message, ...meta);
+  warn(msg: string): void;
+  warn(obj: object, msg?: string): void;
+  warn(msgOrObj: any, msg: string = ''): void {
+    if (arguments.length > 2) {
+      const { '0': message, '1': context } = arguments;
+      this.logger.warn(`[${context}] ${message}`);
+    } else {
+      this.logger.warn(msgOrObj, msg);
+    }
   }
 }
