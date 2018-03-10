@@ -5,7 +5,7 @@ export function createLoggerProviders() {
   return [
     {
       provide: LoggerToken,
-      useValue: new Logger()
+      useFactory: () => new Logger()
     }
   ];
 }
