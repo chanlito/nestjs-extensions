@@ -1,13 +1,15 @@
 import * as optional from 'optional';
 
+import { LoggerConfig } from './logger.interfaces';
+
 const pino = optional('pino');
 
 export class Logger {
   private readonly logger: any;
 
-  constructor() {
+  constructor(config?: LoggerConfig) {
     this.logger = pino({
-      prettyPrint: process.env.NODE_ENV !== 'production'
+      prettyPrint: config ? config.pretty : false
     });
   }
 
