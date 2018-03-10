@@ -1,16 +1,18 @@
 import { Logger } from '@nestjs/common';
-import { Mandrill } from 'mandrill-api';
-import * as nodemailer from 'nodemailer';
+import * as optional from 'optional';
+
+const mandrill = optional('mandrill-api');
+const nodemailer = optional('nodemailer');
 
 export class Mailer {
-  private mandrillClient: Mandrill;
-  private transporter: nodemailer.Transporter;
+  private mandrillClient: any;
+  private transporter: any;
   private logger: Logger = new Logger('MailerModule');
 
   constructor(private readonly config: MailerConfiguration) {
     if (config.type === 'mandrill') {
       this.logger.log('Using "mandrill"');
-      this.mandrillClient = new Mandrill(config.mandrill.apiKey);
+      this.mandrillClient = new mandrill.Mandrill(config.mandrill.apiKey);
       this.mandrillClient.users.ping(
         {},
         result => this.logger.log('ping "mandrill" success'),
