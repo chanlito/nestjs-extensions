@@ -1,12 +1,14 @@
 import 'winston-daily-rotate-file';
 
 import { LoggerService } from '@nestjs/common';
-import * as winston from 'winston';
+import * as optional from 'optional';
 
 import { CreateLoggerProvidersConfiguration } from './logger.providers';
 
+const winston = optional('winston');
+
 export class Logger implements LoggerService {
-  private readonly logger: winston.LoggerInstance;
+  private readonly logger: any;
 
   constructor(private config: CreateLoggerProvidersConfiguration) {
     this.logger = new winston.Logger({

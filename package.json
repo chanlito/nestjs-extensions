@@ -13,7 +13,6 @@
     "nestjs",
     "typescript",
     "decorators",
-    "typeorm",
     "extensions"
   ],
   "author": "Chanlito Hem <chanlitohem@gmail.com>",
