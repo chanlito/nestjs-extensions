@@ -1,8 +1,8 @@
-import { Catch, WsExceptionFilter } from '@nestjs/common';
+import { Catch, WsExceptionFilter as NestWsExceptionFilter } from '@nestjs/common';
 import { WsException } from '@nestjs/websockets';
 
 @Catch(WsException)
-export class WebsocketsExceptionFilter implements WsExceptionFilter {
+export class WsExceptionFilter implements NestWsExceptionFilter {
   catch(exception: WsException, socket: any) {
     socket.emit('exception', {
       status: 'exception',

@@ -3,7 +3,7 @@ import { Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
 import { Logger } from '../logger';
 
 @Catch()
-export class ApplicationExceptionFilter implements ExceptionFilter {
+export class AppExceptionFilter implements ExceptionFilter {
   constructor(private readonly logger?: Logger) {}
 
   catch(err: any, res: any) {
@@ -32,10 +32,11 @@ export class ApplicationExceptionFilter implements ExceptionFilter {
     res.status(statusCode).json(responseBody);
 
     if (this.logger) {
+      const msg = `[AppExceptionFilter] ${responseBody.message}`;
       if (statusCode >= 500) {
-        this.logger.error(responseBody, responseBody.message);
+        this.logger.error(responseBody, msg);
       } else {
-        this.logger.warn(responseBody, responseBody.message);
+        this.logger.warn(responseBody, msg);
       }
     }
   }
