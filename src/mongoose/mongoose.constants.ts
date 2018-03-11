@@ -1,0 +1,1 @@
+export const MongooseConnectionToken = 'MongooseConnectionToken';
