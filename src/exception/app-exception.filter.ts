@@ -8,7 +8,7 @@ export class AppExceptionFilter implements ExceptionFilter {
 
   catch(err: any, res: any) {
     const statusCode = typeof err.getStatus === 'function' ? err.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
-    const response = typeof err.getResponse === 'function' ? err.getResponse() : 'Internal Server Error';
+    const response = typeof err.getResponse === 'function' ? err.getResponse() : err.message || 'Internal Server Error';
 
     let responseBody: any;
 
@@ -35,6 +35,8 @@ export class AppExceptionFilter implements ExceptionFilter {
       const msg = `[AppExceptionFilter] ${responseBody.message}`;
       if (statusCode >= 500) {
         this.logger.error(responseBody, msg);
+        err.message = responseBody.message;
+        console.error(err.stack);
       } else {
         this.logger.warn(responseBody, msg);
       }
