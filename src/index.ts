@@ -6,5 +6,4 @@ export * from './exception';
 export * from './logger';
 export * from './mailer';
 export * from './redis';
-export * from './sequelize';
 export * from './util';
