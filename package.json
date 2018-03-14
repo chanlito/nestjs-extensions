@@ -50,6 +50,7 @@
     "sequelize-typescript": "^0.6.3",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
+    "typeorm": "^0.1.16",
     "typescript": "^2.7.2"
   },
   "peerDependencies": {
@@ -66,6 +67,7 @@
     "redis": "^2.8.0",
     "rxjs": "^5.5.6",
     "sequelize": "^4.35.2",
-    "sequelize-typescript": "^0.6.3"
+    "sequelize-typescript": "^0.6.3",
+    "typeorm": "^0.1.16"
   }
 }
