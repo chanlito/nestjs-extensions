@@ -25,7 +25,7 @@ export function createTypeOrmProviders(config: CreateTypeOrmProvidersConfigurati
     },
     {
       provide: MongoEntityManager,
-      useFactory: (connection: Connection) => connection.mongoManager,
+      useFactory: (connection: Connection) => (connection.options.type === 'mongodb' ? connection.mongoManager : null),
       inject: [Connection]
     }
   ];
