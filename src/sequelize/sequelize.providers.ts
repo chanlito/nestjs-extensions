@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 
 import { SequelizeModuleConfiguration } from './sequelize.interfaces';
-import { getModelToken } from './sequelize.utils';
 
 export function createSequelizeProviders({ config, models }: SequelizeModuleConfiguration): any[] {
   const sequelizeProvider = {
@@ -12,10 +11,10 @@ export function createSequelizeProviders({ config, models }: SequelizeModuleConf
       return sequelize;
     }
   };
-  const modelsProvider = (models || []).map(m => {
+  const modelsProvider = (models || []).map(model => {
     return {
-      provide: getModelToken(m),
-      useFactory: (sequelize: Sequelize) => sequelize.models[m.name],
+      provide: model,
+      useFactory: (sequelize: Sequelize) => sequelize.models[model.name],
       inject: [Sequelize]
     };
   });
