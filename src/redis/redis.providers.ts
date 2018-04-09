@@ -1,7 +1,9 @@
 import { Logger } from '@nestjs/common';
-import * as redis from 'redis';
+import * as optional from 'optional';
 
 import { RedisClientToken } from './redis.constants';
+
+const redis = optional('redis');
 
 const logger = new Logger('RedisModule');
 
