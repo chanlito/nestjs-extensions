@@ -1,5 +1,4 @@
-import { Logger } from './logger';
-import { LoggerConfig } from './logger.interfaces';
+import { Logger, LoggerConfig } from './logger';
 
 export function createLoggerProviders(config?: LoggerConfig) {
   return [

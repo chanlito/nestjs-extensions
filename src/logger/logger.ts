@@ -1,15 +1,11 @@
-import * as optional from 'optional';
-
-import { LoggerConfig } from './logger.interfaces';
-
-const pino = optional('pino');
+import * as pino from 'pino';
 
 export class Logger {
   private readonly logger: any;
 
   constructor(config?: LoggerConfig) {
     this.logger = pino({
-      prettyPrint: config ? config.pretty : false
+      prettyPrint: config ? config.pretty : false,
     });
   }
 
@@ -45,4 +41,8 @@ export class Logger {
       this.logger.warn(msgOrObj, msg);
     }
   }
+}
+
+export interface LoggerConfig {
+  pretty?: boolean;
 }
